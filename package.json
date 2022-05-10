@@ -1,0 +1,21 @@
+{
+  "name": "hedera",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hashgraph/hethers": "^1.1.0",
+    "@hashgraph/sdk": "^2.13.1",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0",
+    "solc": "^0.8.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
