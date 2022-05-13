@@ -1,7 +1,7 @@
-const baseURL = 'https://testnet.mirrornode.hedera.com/api/v1/';
+const baseURL = 'https://mainnet-public.mirrornode.hedera.com/api/v1/';
 const axios = require('axios').default.create({ baseURL });
 // const initTimestamp = '1650637885.693392647' || `${parseInt((new Date() / 1000))}.000000000`;
-const initTimestamp = '1651256725.014607839' || `${parseInt((new Date() / 1000))}.000000000`;
+const initTimestamp = `${parseInt(((Date.now() - 1000000) / 1000))}.000000000`;
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
