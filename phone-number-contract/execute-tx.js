@@ -20,7 +20,8 @@ const operatorKey = PrivateKey.fromString(process.env.OPERATOR_PVKEY);
 const client = Client.forTestnet().setOperator(operatorId, operatorKey);
 
 const CONTRACT_ID = '0.0.34730039';
-const CONTRACT_ADDRESS = '000000000000000000000000000000000211f037'; // 0x?
+const CONTRACT_ADDRESS = '0x000000000000000000000000000000000211f037';
+const NEW_NUMBER = Math.floor(Math.random() * 1000000);
 
 async function main() {
   // Query the contract to check changes in state variable
@@ -29,7 +30,7 @@ async function main() {
     .setGas(100000)
     .setFunction(
       "getMobileNumber",
-      new ContractFunctionParameters().addString("Alice")
+      new ContractFunctionParameters().addString("Bob")
     );
   const contractQuerySubmit = await contractQueryTx.execute(client);
   const contractQueryResult = contractQuerySubmit.getUint256(0);
@@ -43,7 +44,7 @@ async function main() {
     .setGas(100000)
     .setFunction(
       "setMobileNumber",
-      new ContractFunctionParameters().addString("Bob").addUint256(222222)
+      new ContractFunctionParameters().addString("Bob").addUint256(NEW_NUMBER)
     )
   const contractExecuteSubmit = await contractExecuteTx.execute(client);
   const contractExecuteRx = await contractExecuteSubmit.getReceipt(client);
