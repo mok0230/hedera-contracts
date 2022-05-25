@@ -1,15 +1,12 @@
-const { getOperatorConfig, getAltOperatorConfig } = require('../utils/operator');
+const { getOperatorConfig, getAltOperatorConfig } = require('./../utils/operator');
+const { getTokenConfig } = require('./../utils/token');
 const {
-  TokenMintTransaction,
-  TokenId
+  TokenMintTransaction
 } = require("@hashgraph/sdk");
-
-const TOKEN_ID='0.0.34912742'
-const TOKEN_EVM_ADDRESS='0x000000000000000000000000000000000214b9e6'
 
 const { operatorId, operatorPublicKey, operatorPrivateKey, client } = getOperatorConfig();
 const { altOperatorId, altClient } = getAltOperatorConfig();
-const tokenId = TokenId.fromString(TOKEN_ID);
+const { tokenId } = getTokenConfig();
 
 async function main() {
   const transaction = await new TokenMintTransaction()
@@ -31,7 +28,7 @@ async function main() {
   //Get the transaction consensus status
   const transactionStatus = receipt.status;
 
-  console.log("The transaction consensus status " +transactionStatus.toString());
+  console.log("The transaction consensus status " + transactionStatus.toString());
 }
 
 main();
