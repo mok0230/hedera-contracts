@@ -4,8 +4,6 @@ const {
   AccountId,
   PrivateKey,
   Client,
-  FileCreateTransaction,
-  ContractCreateTransaction,
   ContractFunctionParameters,
   ContractExecuteTransaction,
   ContractCallQuery,
