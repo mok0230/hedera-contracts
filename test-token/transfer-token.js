@@ -1,24 +1,41 @@
-const { getOperatorConfig } = require('./../utils/operator');
+const { getOperatorConfig, getAltOperatorConfig } = require('../utils/operator');
 const {
-  TokenInfoQuery
+  TransferTransaction,
+  TokenId
 } = require("@hashgraph/sdk");
 
 const TOKEN_ID='0.0.34912742'
 const TOKEN_EVM_ADDRESS='0x000000000000000000000000000000000214b9e6'
 
 const { operatorId, operatorPublicKey, operatorPrivateKey, client } = getOperatorConfig();
-
-console.log('operatorConfig \noperatorId %s\noperatorPublicKey %s\noperatorPrivateKey %s\nclient %s', operatorId, operatorPublicKey, operatorPrivateKey, client);
+const { altOperatorId } = getAltOperatorConfig();
+const tokenId = TokenId.fromString(TOKEN_ID);
 
 async function main() {
-  const query = new TokenInfoQuery().setTokenId(TOKEN_ID);
+  const transferValue = 10
+  console.log(`transferring ${transferValue} tokens from ${operatorId} to ${altOperatorId}`);
 
-  // Sign with the client operator private key, submit the query to the network and get the token supply
-  const response = await query.execute(client);
+  //Create the transfer transaction
+  const transaction = await new TransferTransaction()
+  .addTokenTransfer(tokenId, operatorId, -1 * transferValue)
+  .addTokenTransfer(tokenId, altOperatorId, transferValue)
+  .freezeWith(client);
 
-  console.log('response', response);
+  //Sign with the sender account private key
+  const signTx = await transaction.sign(operatorPrivateKey);
 
-  console.log('response.totalSupply'+ response.totalSupply);
+  //Sign with the client operator private key and submit to a Hedera network
+  const txResponse = await signTx.execute(client);
+
+  //Request the receipt of the transaction
+  const receipt = await txResponse.getReceipt(client);
+
+  // console.log('receipt', receipt);
+
+  // Obtain the transaction consensus status
+  const transactionStatus = receipt.status;
+
+  console.log("The transaction consensus status " +transactionStatus.toString());
 }
 
 main();
