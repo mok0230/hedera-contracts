@@ -9,5 +9,12 @@ To configure your dev environment:
 OPERATOR_ACCOUNT_ID=
 OPERATOR_PUBLIC_KEY=
 OPERATOR_PRIVATE_KEY=
-DRAGON_GLASS_ACCESS_KEY=  # required if using DragonGlass API
+
+# if alt operator is required (e.g. for token transfer)
+ALT_OPERATOR_ACCOUNT_ID=
+ALT_OPERATOR_PUBLIC_KEY=
+ALT_OPERATOR_PRIVATE_KEY=
+
+# if using DragonGlass API
+DRAGON_GLASS_ACCESS_KEY=  
 ```
