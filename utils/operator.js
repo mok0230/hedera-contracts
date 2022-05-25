@@ -6,8 +6,6 @@ const {
   Client
 } = require("@hashgraph/sdk");
 
-console.log('__dirname', `${__dirname}/../.env`);
-
 function getOperatorConfig() {
   const operatorId = AccountId.fromString(process.env.OPERATOR_ACCOUNT_ID);
   const operatorPrivateKey = PrivateKey.fromString(process.env.OPERATOR_PRIVATE_KEY);
@@ -20,4 +18,16 @@ function getOperatorConfig() {
   }
 }
 
-module.exports = { getOperatorConfig };
+function getAltOperatorConfig() {
+  const altOperatorId = AccountId.fromString(process.env.ALT_OPERATOR_ACCOUNT_ID);
+  const altOperatorPrivateKey = PrivateKey.fromString(process.env.ALT_OPERATOR_PRIVATE_KEY);
+
+  return {
+    altOperatorId,
+    altOperatorPublicKey: PublicKey.fromString(process.env.ALT_OPERATOR_PUBLIC_KEY),
+    altOperatorPrivateKey,
+    altClient: Client.forTestnet().setOperator(altOperatorId, altOperatorPrivateKey)
+  }
+}
+
+module.exports = { getOperatorConfig, getAltOperatorConfig };
