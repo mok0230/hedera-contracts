@@ -7,9 +7,7 @@ const {
   ContractFunctionParameters,
   ContractExecuteTransaction,
   ContractCallQuery,
-  Hbar
 } = require("@hashgraph/sdk");
-const fs = require("fs");
 
 // Configure accounts and client
 const operatorId = AccountId.fromString(process.env.OPERATOR_ID);
