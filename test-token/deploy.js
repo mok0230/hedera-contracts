@@ -27,6 +27,12 @@ async function main() {
       .setTreasuryAccountId(operatorId)
       .setInitialSupply(5000)
       .setAdminKey(operatorPublicKey)
+      .setSupplyKey(operatorPublicKey)
+      .setPauseKey(operatorPublicKey)
+      .setFreezeKey(operatorPublicKey)
+      .setWipeKey(operatorPublicKey)
+      .setKycKey(operatorPublicKey)
+      .setFeeScheduleKey(operatorPublicKey)
       .setMaxTransactionFee(new Hbar(30)) //Change the default max transaction fee
       .freezeWith(client);
 
