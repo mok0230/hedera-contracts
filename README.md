@@ -1,4 +1,8 @@
-# Hedera Smart Contract Playground
+# Hedera Contracts
+
+This repo contains code for testing Hedera contracts
+
+## Config
 
 To configure your dev environment:
 
