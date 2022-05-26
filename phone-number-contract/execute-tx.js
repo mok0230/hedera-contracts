@@ -8,16 +8,13 @@ const {
   ContractExecuteTransaction,
   ContractCallQuery,
 } = require("@hashgraph/sdk");
-
-// Configure accounts and client
-const operatorId = AccountId.fromString(process.env.OPERATOR_ID);
-const operatorKey = PrivateKey.fromString(process.env.OPERATOR_PVKEY);
-
-const client = Client.forTestnet().setOperator(operatorId, operatorKey);
+const { getOperatorConfig } = require('./../utils/operator');
 
 const CONTRACT_ID = '0.0.34730039';
 const CONTRACT_ADDRESS = '0x000000000000000000000000000000000211f037';
 const NEW_NUMBER = Math.floor(Math.random() * 1000000);
+
+const { client } = getOperatorConfig();
 
 async function main() {
   // Query the contract to check changes in state variable
