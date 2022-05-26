@@ -11,8 +11,8 @@ const CONTRACT_ID = '0.0.34921232';
 const CONTRACT_ADDRESS = '0x000000000000000000000000000000000214db10';
 
 
-const TEST_KEY="Key2";
-const TEST_VAL = Math.floor(Math.random() * 1000000);
+const TEST_STR="Key2";
+const TEST_NUM = Math.floor(Math.random() * 1000000);
 
 const { client } = getOperatorConfig();
 
@@ -23,17 +23,17 @@ async function main() {
     .setGas(100000)
     .setFunction(
       "getTestMapping",
-      new ContractFunctionParameters().addString(TEST_KEY)
+      new ContractFunctionParameters().addString(TEST_STR)
     );
   const contractQuerySubmit = await contractQueryTx.execute(client);
   const contractQueryResult = contractQuerySubmit.getUint256(0);
 
   console.log(
-    `Fetched value for ${TEST_KEY}: ${contractQueryResult}\n`
+    `Fetched value for ${TEST_STR}: ${contractQueryResult}\n`
   );
 
   console.log(
-    `Updating value for ${TEST_KEY} to: ${TEST_VAL}\n`
+    `Updating value for ${TEST_STR} to: ${TEST_NUM}\n`
   );
 
   // Call contract function to update the state variable
@@ -42,7 +42,7 @@ async function main() {
     .setGas(100000)
     .setFunction(
       "updateTestMapping",
-      new ContractFunctionParameters().addString(TEST_KEY).addUint256(TEST_VAL)
+      new ContractFunctionParameters().addString(TEST_STR).addUint256(TEST_NUM)
     )
   const contractExecuteSubmit = await contractExecuteTx.execute(client);
   const contractExecuteRx = await contractExecuteSubmit.getReceipt(client);
@@ -56,12 +56,12 @@ async function main() {
     .setGas(100000)
     .setFunction(
       "getTestMapping",
-      new ContractFunctionParameters().addString(TEST_KEY)
+      new ContractFunctionParameters().addString(TEST_STR)
     );
   const contractQuerySubmit1 = await contractQueryTx1.execute(client);
   const contractQueryResult1 = contractQuerySubmit1.getUint256(0);
   console.log(
-    `Fetched value for ${TEST_KEY}: ${contractQueryResult1}\n`
+    `Fetched value for ${TEST_STR}: ${contractQueryResult1}\n`
   );
 }
 main();
