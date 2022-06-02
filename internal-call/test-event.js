@@ -1,9 +1,7 @@
-// console.clear();
 require("dotenv").config();
 const {
   ContractFunctionParameters,
   ContractExecuteTransaction,
-  ContractCallQuery,
 } = require("@hashgraph/sdk");
 const { getOperatorConfig } = require('../utils/operator');
 

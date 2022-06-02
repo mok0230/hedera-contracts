@@ -1,10 +1,9 @@
-// console.clear();
 require("dotenv").config();
 const {
   ContractFunctionParameters,
   ContractExecuteTransaction,
-  ContractCallQuery,
 } = require("@hashgraph/sdk");
+const { getTestMapping } = require("../utils/contract");
 const { getOperatorConfig } = require('../utils/operator');
 
 const CONTRACT_ID = '0.0.38046390';
@@ -16,24 +15,6 @@ const TEST_STR="Key2";
 const TEST_NUM = Math.floor(Math.random() * 1000000);
 
 const { client } = getOperatorConfig();
-
-async function getTestMapping(contractId, str) {
-  const contractQueryTx = new ContractCallQuery()
-  .setContractId(contractId)
-  .setGas(100000)
-  .setFunction(
-    "getTestMapping",
-    new ContractFunctionParameters().addString(str)
-  );
-
-  const contractQuerySubmit = await contractQueryTx.execute(client);
-  const contractQueryResult = contractQuerySubmit.getUint256(0);
-  console.log(
-    `Fetched value for ${TEST_STR} in ${contractId}: ${contractQueryResult}\n`
-  );
-
-  return contractQueryResult;
-}
 
 async function main() {
   console.log('initial state');
