@@ -1,4 +1,4 @@
-const baseURL = 'https://mainnet-public.mirrornode.hedera.com/api/v1/';
+const baseURL = 'https://testnet.mirrornode.hedera.com/api/v1/';
 const axios = require('axios').default.create({ baseURL });
 // const initTimestamp = '1650637885.693392647' || `${parseInt((new Date() / 1000))}.000000000`;
 const initTimestamp = `${parseInt(((Date.now() - 1000000) / 1000))}.000000000`;
@@ -29,7 +29,10 @@ async function main() {
     if (txs && txs.length > 0) {
       since = txs[0].consensus_timestamp;
       const txsWithLogs = await addInfo(txs);
-      console.log('full transactions', txsWithLogs);
+      txsWithLogs.forEach((tx, i) => {
+        console.log(`TX ${i + 1}`, tx);
+      });
+      
     } else {
       console.log(`No results`);
     }
