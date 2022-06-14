@@ -3,7 +3,8 @@ const {
   AccountId,
   PrivateKey,
   PublicKey,
-  Client
+  Client,
+  Hbar
 } = require("@hashgraph/sdk");
 
 function getOperatorConfig() {
@@ -14,7 +15,7 @@ function getOperatorConfig() {
     operatorId,
     operatorPublicKey: PublicKey.fromString(process.env.OPERATOR_PUBLIC_KEY),
     operatorPrivateKey,
-    client: Client.forTestnet().setOperator(operatorId, operatorPrivateKey)
+    client: Client.forTestnet().setOperator(operatorId, operatorPrivateKey).setDefaultMaxTransactionFee(new Hbar(1))
   }
 }
 
