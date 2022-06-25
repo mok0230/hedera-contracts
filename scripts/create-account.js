@@ -1,4 +1,4 @@
-const { PrivateKey, AccountCreateTransaction, AccountBalanceQuery, Hbar } = require("@hashgraph/sdk");
+const { PrivateKey, AccountCreateTransaction, AccountBalanceQuery, Hbar, PublicKey } = require("@hashgraph/sdk");
 const { getOperatorConfig } = require('../utils/operator');
 
 const { client, operatorId, operatorPublicKey, operatorPrivateKey } = getOperatorConfig();
@@ -12,7 +12,7 @@ async function main() {
     console.log('operatorPublicKey', operatorPublicKey.toString());
     console.log('operatorPrivateKey', operatorPrivateKey.toString());
 
-    const newAccountPrivateKey = await PrivateKey.generateED25519(); 
+    const newAccountPrivateKey = await PrivateKey.generateECDSA(); 
     const newAccountPublicKey = newAccountPrivateKey.publicKey;
 
     const newAccount = await new AccountCreateTransaction()
