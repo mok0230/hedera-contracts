@@ -26,8 +26,12 @@ async function main() {
     console.log('\n***************************\n');
 
     console.log('newAccountId', newAccountId.toString());
-    console.log('newAccountPrivateKey', newAccountPrivateKey.toString());
-    console.log('newAccountPublicKey', newAccountPublicKey.toString());
+    console.log('newAccountPrivateKey DER', newAccountPrivateKey.toString());
+    console.log('newAccountPrivateKey RAW (32 bytes)', newAccountPrivateKey.toStringRaw());
+    console.log('newAccountPublicKey DER', newAccountPublicKey.toString());
+    console.log('newAccountPublicKey RAW (33 bytes)', newAccountPublicKey.toStringRaw())
+
+    
 
     console.log('\n***************************\n');
 
