@@ -5,7 +5,9 @@ const { AccountId } = require("@hashgraph/sdk");
 
 function main() {
     const id = process.argv[2];
-    const [shard, realm, num] = id.split('.');
+    const [shard, realm, num] = id.split('.').map(numStr => parseInt(numStr, 10));
+
+    console.log('shard, realm, num', shard, realm, num)
 
     const accountId = new AccountId(shard, realm, num);
     const solidityAddress = accountId.toSolidityAddress();
