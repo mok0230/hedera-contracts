@@ -1,3 +1,4 @@
+require('@nomiclabs/hardhat-waffle');
 require('dotenv').config();
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
   networks: {
     hedera: {
       url: 'https://testnet.hashio.io/api',
-      accounts: [`0x${process.env.ALT_OPERATOR_PRIVATE_KEY}`],
+      accounts: [`0x${process.env.ETHERS_PRIVATE_KEY}`],
     }
   },
 };
