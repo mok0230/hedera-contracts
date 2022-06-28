@@ -17,7 +17,7 @@ async function main() {
 
     const newAccount = await new AccountCreateTransaction()
         .setKey(newAccountPublicKey)
-        .setInitialBalance(Hbar.fromTinybars(1000))
+        .setInitialBalance(Hbar.fromTinybars(10000000))
         .execute(client);
 
     const receipt = await newAccount.getReceipt(client);
