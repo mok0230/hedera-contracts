@@ -25,9 +25,9 @@ function getAltOperatorConfig() {
 
   return {
     altOperatorId,
-    altOperatorPublicKey: PublicKey.fromString(process.env.ALT_OPERATOR_PUBLIC_KEY),
+    altOperatorPublicKey: altOperatorPrivateKey.publicKey,
     altOperatorPrivateKey,
-    altClient: Client.forTestnet().setOperator(altOperatorId, altOperatorPrivateKey)
+    altClient: Client.forTestnet().setOperator(altOperatorId, altOperatorPrivateKey).setDefaultMaxTransactionFee(new Hbar(1))
   }
 }
 
