@@ -10,7 +10,7 @@ function main() {
     console.log('shard, realm, num', shard, realm, num)
 
     const accountId = new AccountId(shard, realm, num);
-    const solidityAddress = accountId.toSolidityAddress();
+    const solidityAddress = `0x${accountId.toSolidityAddress()}`;
 
     console.log('solidityAddress', solidityAddress);
     
