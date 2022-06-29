@@ -6,7 +6,7 @@ const { AccountId } = require("@hashgraph/sdk");
 function main() {
     const address = process.argv[2];
     
-    const accountId = new AccountId.fromSolidityAddress(address);
+    const accountId = AccountId.fromSolidityAddress(address);
 
     console.log('accountId', accountId);
 
