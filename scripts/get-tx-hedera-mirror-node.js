@@ -27,7 +27,7 @@ async function main() {
   while (true) {
     const txs = await getTxs(since);
     if (txs && txs.length > 0) {
-      since = txs[0].consensus_timestamp;
+      since = txs[txs.length - 1].consensus_timestamp;
       const txsWithLogs = await addInfo(txs);
       txsWithLogs.forEach((tx, i) => {
         console.log(`TX ${i + 1}`, tx);
