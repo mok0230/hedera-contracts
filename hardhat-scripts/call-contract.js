@@ -2,7 +2,6 @@ const { computeAliasFromPubKey } = require('@hethers/transactions');
 const { Wallet } = require('ethers');
 const { ethers } = require('hardhat');
 const testSolidityFeaturesAbi = require('../test-solidity-features/SolidityFeaturesContract_sol_SolidityFeaturesContract.json')
-const { sleep } = require('../utils/execution');
 require('dotenv').config({ path: '../.env' })
 
 const TEST_SOLIDITY_FEATURES = '0x000000000000000000000000000000000214db10';
