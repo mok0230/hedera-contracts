@@ -9,7 +9,7 @@ async function sleep(ms) {
 async function getTxs(since) {
   // TODO: Do we need to track CONTRACTCREATEINSTANCE/CONTRACTUPDATEINSTANCE as well, due to constructors?
   console.log(`Querying since ${since}...`);
-  const response = await axios.get(`transactions?transactiontype=CONTRACTCALL&timestamp=gt:${since}&order=asc&limit=100`);
+  const response = await axios.get(`transactions?transactiontype=CONTRACTCALL&transactiontype=ETHEREUMTRANSACTION&timestamp=gt:${since}&order=asc&limit=100`);
   console.log('light transactions', response.data.transactions)
   console.log('tx length', response.data.transactions.length)
   return response.data.transactions;
