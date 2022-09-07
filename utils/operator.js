@@ -15,7 +15,7 @@ function getOperatorConfig() {
     operatorId,
     operatorPublicKey: PublicKey.fromString(process.env.OPERATOR_PUBLIC_KEY),
     operatorPrivateKey,
-    client: Client.forTestnet().setOperator(operatorId, operatorPrivateKey).setDefaultMaxTransactionFee(new Hbar(1))
+    client: Client.forTestnet().setOperator(operatorId, operatorPrivateKey).setDefaultMaxTransactionFee(new Hbar(10))
   }
 }
 
