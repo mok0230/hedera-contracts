@@ -3,7 +3,7 @@ const { getOperatorConfig } = require('../utils/operator');
 
 const { client, operatorId, operatorPublicKey, operatorPrivateKey } = getOperatorConfig();
 
-const RECIPIENT_ACCOUNT_ID = '0.0.46806274'
+const RECIPIENT_ACCOUNT_ID = '0.0.46837412'
 
 async function main() {
     console.log('sending funds');
@@ -15,8 +15,8 @@ async function main() {
     console.log('operatorPrivateKey', operatorPrivateKey.toString());
 
     const transaction = new TransferTransaction()
-     .addHbarTransfer(operatorId, Hbar.fromTinybars(-100000))
-     .addHbarTransfer(RECIPIENT_ACCOUNT_ID, Hbar.fromTinybars(100000));
+     .addHbarTransfer(operatorId, Hbar.fromTinybars(-100000000000))
+     .addHbarTransfer(RECIPIENT_ACCOUNT_ID, Hbar.fromTinybars(100000000000));
 
      const scheduleTransaction = await new ScheduleCreateTransaction()
      .setScheduledTransaction(transaction)
