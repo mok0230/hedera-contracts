@@ -1,15 +1,14 @@
 const baseURL = 'https://testnet.mirrornode.hedera.com/api/v1/';
 const axios = require('axios').default.create({ baseURL });
-const initTimestamp = `${parseInt(((Date.now() - 1000000) / 1000))}.000000000`;
+const initTimestamp = `${parseInt(((Date.now() - 1000) / 1000))}.000000000`;
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function getTxs(since) {
-  // TODO: Do we need to track CONTRACTCREATEINSTANCE/CONTRACTUPDATEINSTANCE as well, due to constructors?
   console.log(`Querying since ${since}...`);
-  const response = await axios.get(`transactions?transactiontype=CONTRACTCALL&transactiontype=ETHEREUMTRANSACTION&timestamp=gt:${since}&order=asc&limit=100`);
+  const response = await axios.get(`transactions?transactiontype=CONTRACTCALL&transactiontype=ETHEREUMTRANSACTION&transactiontype=CONTRACTCREATEINSTANCE&timestamp=gt:${since}&order=asc&limit=100`);
   console.log('light transactions', response.data.transactions)
   console.log('tx length', response.data.transactions.length)
   return response.data.transactions;
